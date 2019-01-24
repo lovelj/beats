@@ -106,6 +106,13 @@ func (c *client) publish(e beat.Event) {
 		return
 	}
 
+	//解析日志
+	error:=ParselogMsg(event)
+	if error!=nil{
+		log.Errorf("###出现错误")
+	}
+	//
+
 	e = *event
 	pubEvent := publisher.Event{
 		Content: e,
